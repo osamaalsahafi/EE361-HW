@@ -1,6 +1,6 @@
 import random
 from myhdl import block, always, instance, Signal, \
-    ResetSignal, modbv, delay, StopSimulation
+    ResetSignal, modbv, delay, StopSimulation , bin
 from Counter import inc
 
 random.seed(1)
@@ -9,7 +9,7 @@ ACTIVE_LOW, INACTIVE_HIGH = 0, 1
 
 @block
 def test_inc():
-    x = 3
+    x = 12
     count = Signal(modbv(0)[x:])
     enable = Signal(bool(0))
     clk = Signal(bool(0))
@@ -23,11 +23,13 @@ def test_inc():
 
     @instance
     def stimulus():
-        reset.next = ACTIVE_LOW
-        yield clk.negedge
+        for i in range(3):
+            yield clk.negedge
         reset.next = INACTIVE_HIGH
-        for i in range(16):
-            enable.next = min(1, randrange(3))
+        for i in range(4096):
+            enable.next = 1
+            yield clk.negedge
+            enable.next = 0
             yield clk.negedge
         raise StopSimulation()
 
@@ -39,7 +41,7 @@ def test_inc():
         while 1:
             yield clk.posedge
             yield delay(1)
-            print("   %s      %s" % (int(enable), count))
+            print("   %s      %s" % (int(enable), bin(count, 12)))
 
     return clkgen, stimulus, inc_1, monitor
 
