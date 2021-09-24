@@ -1,10 +1,7 @@
-import random
 from myhdl import block, always, instance, Signal, \
     ResetSignal, modbv, delay, StopSimulation , bin
 from Counter import inc
 
-random.seed(1)
-randrange = random.randrange
 ACTIVE_LOW, INACTIVE_HIGH = 0, 1
 
 @block
