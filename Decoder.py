@@ -49,10 +49,10 @@ def testbench():
 
     @instance
     def stimulus():
-        print("i1 i0   d0 d1 d2 d3")
+        print("i0 i1   d0 d1 d2 d3")
         for i in range(20):
             i0.next, i1.next = randrange(2), randrange(2)
-            print("%s  %s     %s  %s  %s  %s" % (i1, i0, d0, d1, d2, d3))
+            print("%s  %s     %s  %s  %s  %s" % (i0, i1, d0, d1, d2, d3))
             yield delay(10)
 
     return instances()
