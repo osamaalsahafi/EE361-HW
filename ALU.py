@@ -1,5 +1,6 @@
 import random
-from myhdl import *
+from myhdl import always_comb, block, intbv, Signal, instance, delay, instances,\
+    bin
 
 random.seed(13)
 randrange = random.randrange
@@ -9,6 +10,7 @@ randrange = random.randrange
 def alu(a, b, sel, output):
     @always_comb
     def alu():
+
         if sel == 0:
             output.next = a + b
         elif sel == 1:
@@ -30,6 +32,7 @@ def testbench():
     out = Signal(intbv(0).signed())
     ins = alu(a, b, sel, out)
     operation = ""
+
     @instance
     def stimulus():
         print("A   ,  B  = Out | selection")
