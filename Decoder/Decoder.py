@@ -45,7 +45,6 @@ d3 = Signal(bool(0))
 @block
 def testbench():
     i0, i1, d0, d1, d2, d3 = [Signal(intbv(0)) for i in range(6)]
-    dec = decoder(i0, i1, d0, d1, d2, d3)
 
     @instance
     def stimulus():

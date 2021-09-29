@@ -1,8 +1,8 @@
 from myhdl import block, always, instance, Signal, \
-    ResetSignal, modbv, delay, StopSimulation, bin, always_seq
-
+    ResetSignal, modbv, delay, StopSimulation, bin, always_seq, traceSignals, Simulation
 
 ACTIVE_LOW, INACTIVE_HIGH = 0, 1
+
 
 @block
 def Counter(count, enable, clk, reset):
@@ -12,6 +12,7 @@ def Counter(count, enable, clk, reset):
     #clk -- clock input
     #reset -- asynchronous reset input
     """
+
     @always_seq(clk.posedge, reset=reset)
     def counter():
         if enable:
@@ -19,13 +20,12 @@ def Counter(count, enable, clk, reset):
 
     return counter
 
-count = Signal(modbv(0)[12:])
-enable = Signal(bool(0))
-clk = Signal(bool(0))
-reset = ResetSignal(0, active=0, isasync=True)
-
 @block
 def Test():
+    count = Signal(modbv(0)[12:])
+    enable = Signal(bool(0))
+    clk = Signal(bool(0))
+    reset = ResetSignal(0, active=0, isasync=True)
     counter_test = Counter(count, enable, clk, reset)
     inc_1 = Counter(count, enable, clk, reset)
     HALF_PERIOD = delay(10)
@@ -58,9 +58,13 @@ def Test():
 
     return clkgen, stimulus, inc_1, monitor
 
+
 def convert():
+    count = Signal(modbv(0)[12:])
+    enable = Signal(bool(0))
+    clk = Signal(bool(0))
+    reset = ResetSignal(0, active=0, isasync=True)
     tst = Counter(count, enable, clk, reset)
-    tst.convert(hdl='Verilog')
 
 
 convert()
