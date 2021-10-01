@@ -1,11 +1,11 @@
 module tb_decoder;
 
-reg i0;
-reg i1;
-wire d0;
-wire d1;
-wire d2;
-wire d3;
+reg [0:0] i0;
+reg [0:0] i1;
+wire [0:0] d0;
+wire [0:0] d1;
+wire [0:0] d2;
+wire [0:0] d3;
 
 initial begin
     $from_myhdl(
