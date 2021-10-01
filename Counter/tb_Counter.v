@@ -14,9 +14,7 @@ initial begin
     $to_myhdl(
         count
     );
-
 end
-
 
 Counter dut(
     count,

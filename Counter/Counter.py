@@ -65,6 +65,7 @@ def convert():
     clk = Signal(bool(0))
     reset = ResetSignal(0, active=0, isasync=True)
     tst = Counter(count, enable, clk, reset)
+    tst.convert(hdl='Verilog')
 
 
 convert()
