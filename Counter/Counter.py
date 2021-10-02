@@ -2,7 +2,7 @@ from myhdl import block, always, instance, Signal, \
     ResetSignal, modbv, delay, StopSimulation, bin, always_seq, traceSignals, Simulation
 
 ACTIVE_LOW, INACTIVE_HIGH = 0, 1
-
+#is working?
 
 @block
 def Counter(count, enable, clk, reset):
