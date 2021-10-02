@@ -2,7 +2,7 @@ from myhdl import block, always, bin, \
     Signal, delay, modbv, always_comb
 from random import randrange
 
-#whhhhhhhhhy
+
 @block
 def barrel_shifter(load_value, load_input, shift_reg):
 
